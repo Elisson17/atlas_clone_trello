@@ -1,9 +1,9 @@
 import api from "./config";
-import type { Label } from "@/models/label";
+import type { Label, LabelsResponse } from "@/models/label";
 
 export const labelService = {
   list(boardId: number) {
-    return api.get<Label[]>(`/boards/${boardId}/labels`);
+    return api.get<LabelsResponse>(`/boards/${boardId}/labels`);
   },
 
   create(boardId: number, data: { name: string; color: string }) {

@@ -1,9 +1,9 @@
 import api from "./config";
-import type { Comment } from "@/models/comment";
+import type { Comment, CommentResponse } from "@/models/comment";
 
 export const commentService = {
   list(cardId: number) {
-    return api.get<Comment[]>(`/cards/${cardId}/comments`);
+    return api.get<CommentResponse>(`/cards/${cardId}/comments`);
   },
 
   create(cardId: number, body: string) {

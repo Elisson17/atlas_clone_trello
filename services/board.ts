@@ -1,9 +1,9 @@
 import api from "./config";
-import type { Board, BoardMember } from "@/models/board";
+import type { Board, BoardMembersResponse, BoardsResponse } from "@/models/board";
 
 export const boardService = {
   list() {
-    return api.get<Board[]>("/boards");
+    return api.get<BoardsResponse>("/boards");
   },
 
   get(id: number) {
@@ -44,7 +44,7 @@ export const boardService = {
   },
 
   getMembers(id: number) {
-    return api.get<BoardMember[]>(`/boards/${id}/members`);
+    return api.get<BoardMembersResponse>(`/boards/${id}/members`);
   },
 
   updateMember(boardId: number, memberId: number, role: string) {

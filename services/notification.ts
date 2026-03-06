@@ -1,9 +1,9 @@
 import api from "./config";
-import type { Notification } from "@/models/notification";
+import type { NotificationsResponse } from "@/models/notification";
 
 export const notificationService = {
   list() {
-    return api.get<Notification[]>("/notifications");
+    return api.get<NotificationsResponse>("/notifications");
   },
 
   markAsRead(id: number) {
