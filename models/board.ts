@@ -16,6 +16,10 @@ export interface Board {
   updated_at: string;
 }
 
+export type BoardsResponse = {
+  boards: Board[];
+};
+
 export interface BoardMember {
   id: number;
   user: UserSummary;
@@ -27,4 +31,9 @@ export interface BoardFavorite {
   id: number;
   board_id: number;
   position: number;
+}
+
+export interface BoardMembersResponse {
+  owner: BoardMember;
+  members: BoardMember[];
 }

@@ -15,3 +15,7 @@ export interface Notification {
   board_id: number | null;
   created_at: string;
 }
+
+export type NotificationsResponse = {
+  notifications: Notification[];
+};

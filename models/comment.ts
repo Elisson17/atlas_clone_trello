@@ -8,3 +8,7 @@ export interface Comment {
   created_at: string;
   updated_at: string;
 }
+
+export type CommentResponse = {
+  comments: Comment[];
+};

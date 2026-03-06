@@ -10,3 +10,7 @@ export interface Column {
   created_at: string;
   updated_at: string;
 }
+
+export type ColumnsResponse = {
+  columns: Column[];
+};
