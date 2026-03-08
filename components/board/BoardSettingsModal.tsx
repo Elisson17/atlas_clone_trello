@@ -114,7 +114,7 @@ function LabelRow({ label, onUpdated, onDeleted }: LabelRowProps) {
   return (
     <div className="flex items-center gap-2.5 py-2 group">
       <span
-        className="w-8 h-5 rounded flex-shrink-0"
+        className="w-8 h-5 rounded shrink-0"
         style={{ backgroundColor: label.color }}
       />
       <span className="text-sm text-slate-700 dark:text-slate-300 flex-1 min-w-0 truncate">
@@ -209,7 +209,12 @@ export default function BoardSettingsModal({
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Configurações do Board" size="md">
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Configurações do Board"
+      size="md"
+    >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <Input
           id="settings-name"

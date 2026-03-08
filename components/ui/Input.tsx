@@ -13,7 +13,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full">
         {label && (
-          <label htmlFor={id} className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
+          <label
+            htmlFor={id}
+            className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
+          >
             {label}
           </label>
         )}
@@ -25,14 +28,14 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             error
               ? "border-red-500 dark:border-red-500"
               : "border-slate-300 dark:border-[#1e2035]",
-            className
+            className,
           )}
           {...props}
         />
         {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
       </div>
     );
-  }
+  },
 );
 
 Input.displayName = "Input";

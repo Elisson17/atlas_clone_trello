@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Atlas — Gerenciador de Projetos Kanban
 
-## Getting Started
+Aplicação completa de gerenciamento de projetos no estilo Kanban, inspirada no Trello. Desenvolvida como projeto de portfólio para demonstrar habilidades em desenvolvimento full-stack moderno com Next.js e React.
 
-First, run the development server:
+## Funcionalidades
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Boards** — Crie e gerencie múltiplos quadros de projetos com visibilidade pessoal ou em equipe
+- **Colunas Kanban** — Colunas com arrastar e soltar, nomes, cores e posições personalizáveis
+- **Cartões** — Cartões completos com título, descrição, etiquetas, prioridade, responsável, datas e comentários
+- **Etiquetas** — Crie e gerencie etiquetas coloridas por board; atribua múltiplas etiquetas aos cartões
+- **Arrastar e Soltar** — Reordenação suave de cartões e colunas com `@dnd-kit`
+- **Notificações** — Dropdown de notificações com contador de não lidas no cabeçalho
+- **Autenticação** — Fluxo de login e cadastro com JWT
+- **Modo Escuro / Claro** — Alternância de tema completa com preferência persistente via `next-themes`
+- **Membros** — Convide e gerencie membros do board
+- **Log de Atividades** — Rastreamento de todas as ações nos cartões (criação, edições, movimentações, comentários)
+- **Comentários** — Comentários por cartão com suporte a exclusão
+
+## Tecnologias
+
+### Frontend
+- **Next.js 15** (App Router, React 19, Turbopack)
+- **TypeScript**
+- **Tailwind CSS v4** — estilização com modo escuro baseado em classe
+- **@dnd-kit/core + @dnd-kit/sortable** — drag-and-drop acessível
+- **React Hook Form + Zod** — validação de formulários
+- **Lucide React** — biblioteca de ícones
+- **next-themes** — gerenciamento de tema claro/escuro
+- **Sonner** — notificações toast
+- **Axios** — cliente HTTP
+
+### Backend
+- **Ruby on Rails API** (repositório separado)
+- API JSON RESTful com autenticação JWT
+- Banco de dados PostgreSQL
+
+## Estrutura do Projeto
+
+```
+atlas_clone_trello/
+├── app/
+│   ├── (auth)/           # Páginas de login e cadastro
+│   └── (dashboard)/      # Rotas protegidas do dashboard
+│       ├── boards/       # Lista de boards
+│       └── boards/[id]/  # Visualização do board kanban
+├── components/
+│   ├── board/            # Cards de board, modal de configurações, modal de membros
+│   ├── card/             # Modal de detalhes, comentários, atividade, etiquetas
+│   ├── kanban/           # KanbanBoard, KanbanColumn, KanbanCard
+│   ├── layout/           # Sidebar, Header, DashboardHeader, DashboardShell
+│   └── ui/               # Componentes UI reutilizáveis (Button, Input, Modal, Avatar...)
+├── contexts/             # Contextos React (Auth, Board, Notificações, Tema)
+├── actions/              # Wrappers de ações de API do lado do cliente
+├── services/             # Camada de serviços com Axios
+├── models/               # Interfaces TypeScript
+└── utils/                # Utilitários (cn, formatação de datas, constantes)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Como Rodar
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Pré-requisitos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Node.js 18+
+- Servidor da API Rails em execução
 
-## Learn More
+### Instalação
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Clone o repositório
+git clone <url-do-repositorio>
+cd atlas_clone_trello
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Instale as dependências
+npm install
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Inicie o servidor de desenvolvimento
+npm run dev
+```
 
-## Deploy on Vercel
+Acesse [http://localhost:3000](http://localhost:3000) no navegador.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Variáveis de Ambiente
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Crie um arquivo `.env.local` para configurar a URL base da API:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3001
+```

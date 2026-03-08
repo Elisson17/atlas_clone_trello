@@ -57,17 +57,17 @@ export default function MembersModal({
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Membros" size="md">
       {currentBoard?.board_type === "team" && currentBoard.invite_code && (
-        <div className="mb-4 p-3 bg-indigo-50 rounded-lg">
-          <p className="text-xs font-medium text-indigo-700 mb-1">
+        <div className="mb-4 p-3 bg-indigo-50 dark:bg-indigo-950/20 border border-indigo-100 dark:border-indigo-900/30 rounded-lg">
+          <p className="text-xs font-medium text-indigo-700 dark:text-indigo-300 mb-1">
             Código de convite
           </p>
           <div className="flex items-center gap-2">
-            <code className="text-sm text-indigo-900 font-mono flex-1">
+            <code className="text-sm text-indigo-900 dark:text-indigo-200 font-mono flex-1">
               {currentBoard.invite_code}
             </code>
             <button
               onClick={handleCopyInviteCode}
-              className="p-1.5 rounded hover:bg-indigo-100 text-indigo-600 transition-colors"
+              className="p-1.5 rounded hover:bg-indigo-100 dark:hover:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 transition-colors"
             >
               <Copy className="h-4 w-4" />
             </button>
@@ -84,14 +84,14 @@ export default function MembersModal({
               size="md"
             />
             <div className="flex-1">
-              <p className="text-sm font-medium text-slate-900">
+              <p className="text-sm font-medium text-slate-900 dark:text-slate-100">
                 {currentBoard.owner.first_name} {currentBoard.owner.last_name}
               </p>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-slate-500 dark:text-slate-400">
                 @{currentBoard.owner.username}
               </p>
             </div>
-            <span className="flex items-center gap-1 text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full font-medium">
+            <span className="flex items-center gap-1 text-xs bg-amber-100 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 px-2 py-1 rounded-full font-medium">
               <Shield className="h-3 w-3" />
               Dono
             </span>
@@ -101,7 +101,7 @@ export default function MembersModal({
         {members.map((member) => (
           <div
             key={member.id}
-            className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50"
+            className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-[#1e2035]/50"
           >
             <Avatar
               src={member.user.avatar_url}
@@ -109,12 +109,12 @@ export default function MembersModal({
               size="md"
             />
             <div className="flex-1">
-              <p className="text-sm font-medium text-slate-900">
+              <p className="text-sm font-medium text-slate-900 dark:text-slate-100">
                 {member.user.first_name} {member.user.last_name}
               </p>
-              <p className="text-xs text-slate-500">@{member.user.username}</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">@{member.user.username}</p>
             </div>
-            <span className="text-xs text-slate-500 capitalize">
+            <span className="text-xs text-slate-500 dark:text-slate-400 capitalize">
               {member.role}
             </span>
             {isOwner && (

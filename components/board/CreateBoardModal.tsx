@@ -18,7 +18,10 @@ interface CreateBoardModalProps {
   onClose: () => void;
 }
 
-export default function CreateBoardModal({ isOpen, onClose }: CreateBoardModalProps) {
+export default function CreateBoardModal({
+  isOpen,
+  onClose,
+}: CreateBoardModalProps) {
   const router = useRouter();
   const { loadBoards } = useBoard();
   const [error, setError] = useState("");
@@ -54,7 +57,9 @@ export default function CreateBoardModal({ isOpen, onClose }: CreateBoardModalPr
     <Modal isOpen={isOpen} onClose={onClose} title="Criar novo board">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {error && (
-          <div className="p-3 rounded-lg bg-red-50 text-red-600 text-sm">{error}</div>
+          <div className="p-3 rounded-lg bg-red-50 text-red-600 text-sm">
+            {error}
+          </div>
         )}
 
         <Input
@@ -75,7 +80,9 @@ export default function CreateBoardModal({ isOpen, onClose }: CreateBoardModalPr
         />
 
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">Tipo</label>
+          <label className="block text-sm font-medium text-slate-700 mb-2">
+            Tipo
+          </label>
           <div className="grid grid-cols-2 gap-3">
             <button
               type="button"
@@ -84,10 +91,17 @@ export default function CreateBoardModal({ isOpen, onClose }: CreateBoardModalPr
                 "p-3 rounded-lg border-2 text-left transition-colors",
                 boardType === "personal"
                   ? "border-indigo-500 bg-indigo-50"
-                  : "border-slate-200 hover:border-slate-300"
+                  : "border-slate-300 dark:border-[#1e2035]",
               )}
             >
-              <p className="font-medium text-sm text-slate-900">Pessoal</p>
+              <p
+                className={cn(
+                  "font-medium text-sm text-slate-900",
+                  boardType === "personal" ? "" : "text-white",
+                )}
+              >
+                Pessoal
+              </p>
               <p className="text-xs text-slate-500 mt-1">Apenas você</p>
             </button>
             <button
@@ -97,17 +111,29 @@ export default function CreateBoardModal({ isOpen, onClose }: CreateBoardModalPr
                 "p-3 rounded-lg border-2 text-left transition-colors",
                 boardType === "team"
                   ? "border-indigo-500 bg-indigo-50"
-                  : "border-slate-200 hover:border-slate-300"
+                  : "border-slate-300 dark:border-[#1e2035]",
               )}
             >
-              <p className="font-medium text-sm text-slate-900">Time</p>
+              <p
+                className={cn(
+                  "font-medium text-sm text-slate-900",
+                  boardType === "team" ? "" : "text-white",
+                )}
+              >
+                Time
+              </p>
               <p className="text-xs text-slate-500 mt-1">Convide membros</p>
             </button>
           </div>
         </div>
 
         <div className="flex gap-3 pt-2">
-          <Button type="button" variant="secondary" className="flex-1" onClick={onClose}>
+          <Button
+            type="button"
+            variant="secondary"
+            className="flex-1"
+            onClick={onClose}
+          >
             Cancelar
           </Button>
           <Button type="submit" className="flex-1" isLoading={isSubmitting}>
